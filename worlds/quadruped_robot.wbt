@@ -1,0 +1,1165 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+
+WorldInfo {
+  basicTimeStep 16
+  coordinateSystem "NUE"
+  contactProperties [
+    ContactProperties {
+      material1 "wood"
+      coulombFriction [
+        100
+      ]
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.8339579316398436 0.506462337802369 0.21911200022534785 1.9175546274872683
+  position -2.4891563417436893 1.2988744525866358 3.139464571644704
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0 -0.3 0.19
+  rotation 1 0 0 -1.5707953071795862
+  contactMaterial "wood"
+  floorSize 20 2
+}
+DEF GATO Robot {
+  translation 0.04914911536523758 -0.12000594545764234 0.24209317708423075
+  rotation 0.019857887267101013 -0.09268386652178022 -0.9954975465564243 0.07343916813676878
+  children [
+    Solid {
+      translation 0 0.16 0
+      children [
+        Pose {
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  transparency 1
+                }
+              }
+              geometry Box {
+                size 0.35 0.15 0.22
+              }
+            }
+          ]
+        }
+      ]
+      boundingObject Box {
+        size 0.35 0.15 0.2
+      }
+      physics Physics {
+        density 1
+        mass 0.32
+      }
+    }
+    Receiver {
+      channel 1
+    }
+    Emitter {
+      channel 2
+    }
+    Gyro {
+      translation 0.02 0.11 0.11
+    }
+    Accelerometer {
+      translation 0.01 0.1 0.1
+    }
+    InertialUnit {
+      translation 0.01 0.1 0.1
+    }
+    Camera {
+      translation -0.19 0.42 0
+      rotation 0.28108602380742503 -0.6785980574759006 -0.6785980574759006 2.59356
+      children [
+        Display {
+        }
+      ]
+    }
+    DEF TAIL Hinge2Joint {
+      jointParameters HingeJointParameters {
+        position 1.6921593370490458e-06
+        anchor -0.2 0 -0.1
+      }
+      jointParameters2 JointParameters {
+        position 0.33263106452340957
+      }
+      device [
+        PositionSensor {
+          name "hip3x_pos"
+        }
+        RotationalMotor {
+          name "hip3x"
+          maxTorque 100
+        }
+      ]
+      device2 [
+        PositionSensor {
+          name "hip3z_pos"
+        }
+        RotationalMotor {
+          name "hip3z"
+          maxTorque 100
+        }
+      ]
+      endPoint Solid {
+        translation -0.2193842125652131 0.056479916242719835 2.043922095462669e-05
+        rotation 0.3301234246025112 0.8843287875902544 -0.3301228861618975 1.693412767408446
+        children [
+          DEF HIP3_GROUP Group {
+            children [
+              DEF HIP1_TRANS Pose {
+                translation 0 0.28 0.34
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 0.8 0 0
+                      transparency 1
+                      roughness 0.5
+                    }
+                    geometry Sphere {
+                      radius 0.03
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+          Transform {
+            translation 4.71432e-07 0.309999 0.459999
+            rotation -0.5773526025188509 0.5773486025216047 0.5773496025209163 2.0944
+            scale 0.0025 0.003 0.003
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0.7 0.1
+                  metalness 0
+                }
+                geometry Mesh {
+                  url [
+                    "../../../../TAILS/tinker.obj"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+        name "hip3(1)"
+        boundingObject USE HIP3_GROUP
+        physics Physics {
+        }
+      }
+    }
+    DEF NECK Hinge2Joint {
+      jointParameters HingeJointParameters {
+        position 7.1594102232502795e-06
+        anchor -0.2 0 -0.1
+      }
+      jointParameters2 JointParameters {
+        position 0.3326389604637549
+      }
+      device [
+        PositionSensor {
+          name "hip3x_pos"
+        }
+        RotationalMotor {
+          name "hip3x"
+          maxTorque 100
+        }
+      ]
+      device2 [
+        PositionSensor {
+          name "hip3z_pos"
+        }
+        RotationalMotor {
+          name "hip3z"
+          maxTorque 100
+        }
+      ]
+      endPoint Solid {
+        translation -0.21974758323262952 0.05649469474695195 -1.7460335385910408e-05
+        rotation 0.33012243431624233 0.8843313177825112 -0.33011709854257126 1.6934120661856966
+        children [
+          DEF NECK_HEAD HingeJoint {
+            jointParameters HingeJointParameters {
+              position -0.6299238609663164
+              axis 0 0 1
+              anchor 0 -0.15 0
+            }
+            device [
+              PositionSensor {
+                name "knee3_pos"
+              }
+              RotationalMotor {
+                name "knee3"
+                maxTorque 100
+              }
+            ]
+            endPoint Solid {
+              translation -0.00370885122026747 0.006180564271880323 -0.07999999999999895
+              rotation -0.5364489219787544 0.5967520987046621 -0.596749098700127 2.1568290783231694
+              children [
+                Transform {
+                  translation 0.073994 -0.0359399 9.34721e-08
+                  rotation 0.7745965212991105 0.44721372362178063 -0.44721372362178063 -1.823475307179586
+                  scale 0.003 0.003 0.003
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 1 0.7 0.1
+                        metalness 0
+                      }
+                      geometry Mesh {
+                        url [
+                          "../../../../Spectacular Allis/tinker.obj"
+                        ]
+                      }
+                    }
+                  ]
+                }
+                DEF KNEE1_GROUP Group {
+                  children [
+                    DEF FOOT Pose {
+                      translation 0 -0.15 0
+                      rotation -1 0 0 9.632679519287614e-05
+                      children [
+                        Shape {
+                          appearance PBRAppearance {
+                            baseColor 0.180392 0.203922 0.211765
+                            transparency 1
+                            roughness 0.5
+                            metalness 0
+                          }
+                          geometry Cylinder {
+                            height 0.05
+                            radius 0.03
+                          }
+                        }
+                      ]
+                    }
+                    DEF SPRING Pose {
+                      translation 0 -0.075 0
+                      rotation -1 0 0 1.5707963267948966
+                      children [
+                        Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0.8 0
+                            transparency 1
+                            roughness 0.5
+                          }
+                          geometry Cylinder {
+                            height 0.15
+                            radius 0.015
+                          }
+                        }
+                      ]
+                    }
+                    DEF KNEE Pose {
+                      rotation -1 0 0 9.632679519287614e-05
+                      children [
+                        Shape {
+                          appearance PBRAppearance {
+                            baseColor 0.8 0 0
+                            transparency 1
+                            roughness 0.5
+                          }
+                          geometry Cylinder {
+                            height 0.03
+                            radius 0.03
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+              boundingObject USE KNEE1_GROUP
+              physics Physics {
+              }
+            }
+          }
+          DEF HIP3_GROUP Group {
+            children [
+              DEF HIP1_TRANS Pose {
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 0.8 0 0
+                      transparency 1
+                      roughness 0.5
+                    }
+                    geometry Sphere {
+                      radius 0.03
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+          Transform {
+            translation -0.21 -0.0100009 0.00999962
+            rotation 0.70710528118436 0.707108281185553 3.3905113482557537e-09 3.14159
+            scale 0.003 0.003 0.003
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0.7 0.1
+                  transparency 1
+                  metalness 0
+                }
+                geometry Mesh {
+                  url [
+                    "../../../../ImageToStl.com_Forearm/Thigh.obj"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+        name "hip3(2)"
+        boundingObject USE HIP3_GROUP
+        physics Physics {
+        }
+      }
+    }
+    DEF HIP3 Hinge2Joint {
+      jointParameters HingeJointParameters {
+        position -1.9561554130987736e-08
+        anchor -0.2 0 -0.1
+      }
+      jointParameters2 JointParameters {
+        position 0.27925234314269964
+      }
+      device [
+        PositionSensor {
+          name "hip3x_pos"
+        }
+        RotationalMotor {
+          name "hip3x"
+          maxTorque 100
+        }
+      ]
+      device2 [
+        PositionSensor {
+          name "hip3z_pos"
+        }
+        RotationalMotor {
+          name "hip3z"
+          maxTorque 100
+        }
+      ]
+      endPoint Solid {
+        translation -0.20019074712429094 0.00010505727987843231 -0.10015253316885887
+        rotation 0.0002791240440659447 0.00031036573582372324 0.9999999128814351 0.802851652108
+        children [
+          DEF KNEE3 HingeJoint {
+            jointParameters HingeJointParameters {
+              position -0.6283190531689797
+              axis 0 0 1
+              anchor 0 -0.15 0
+            }
+            device [
+              PositionSensor {
+                name "knee3_pos"
+              }
+              RotationalMotor {
+                name "knee3"
+                maxTorque 100
+              }
+            ]
+            endPoint Solid {
+              translation 1.705966714502191e-05 -0.14998292229227644 -4.736232908642008e-08
+              rotation -7.093540070902817e-09 -4.8303164324613185e-09 -1 1.9373168439499335
+              children [
+                Transform {
+                  translation 0.09 0.1 -0.01
+                  rotation 0 0 1 3.14159
+                  scale 0.003 0.003 0.003
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 1 0.7 0.1
+                        metalness 0
+                      }
+                      geometry Mesh {
+                        url [
+                          "../../../../ImageToStl.com_Forearm/Forearm.obj"
+                        ]
+                      }
+                    }
+                  ]
+                }
+                DEF KNEE1_GROUP Group {
+                  children [
+                    DEF FOOT Pose {
+                      translation 0 -0.15 0
+                      rotation -1 0 0 9.632679519287614e-05
+                      children [
+                        Shape {
+                          appearance PBRAppearance {
+                            baseColor 0.180392 0.203922 0.211765
+                            transparency 1
+                            roughness 0.5
+                            metalness 0
+                          }
+                          geometry Cylinder {
+                            height 0.05
+                            radius 0.03
+                          }
+                        }
+                      ]
+                    }
+                    DEF SPRING Pose {
+                      translation 0 -0.075 0
+                      rotation -1 0 0 1.5707963267948966
+                      children [
+                        Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0.8 0
+                            transparency 1
+                            roughness 0.5
+                          }
+                          geometry Cylinder {
+                            height 0.15
+                            radius 0.015
+                          }
+                        }
+                      ]
+                    }
+                    DEF KNEE Pose {
+                      rotation -1 0 0 9.632679519287614e-05
+                      children [
+                        Shape {
+                          appearance PBRAppearance {
+                            baseColor 0.8 0 0
+                            transparency 1
+                            roughness 0.5
+                          }
+                          geometry Cylinder {
+                            height 0.03
+                            radius 0.03
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+              boundingObject USE KNEE1_GROUP
+              physics Physics {
+              }
+            }
+          }
+          DEF HIP3_GROUP Group {
+            children [
+              DEF FEMUR_TRANS Pose {
+                translation 0 -0.075 0
+                rotation -1 0 0 1.5707963267948966
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 0 0.8 0
+                      transparency 1
+                      roughness 0.5
+                    }
+                    geometry Cylinder {
+                      height 0.15
+                      radius 0.015
+                    }
+                  }
+                ]
+              }
+              DEF HIP1_TRANS Pose {
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 0.8 0 0
+                      transparency 1
+                      roughness 0.5
+                    }
+                    geometry Sphere {
+                      radius 0.03
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+          Transform {
+            translation -0.21 -0.0100009 0.00999962
+            rotation 0.70710528118436 0.707108281185553 3.3905113482557537e-09 3.14159
+            scale 0.003 0.003 0.003
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0.7 0.1
+                  metalness 0
+                }
+                geometry Mesh {
+                  url [
+                    "../../../../ImageToStl.com_Forearm/Thigh.obj"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+        name "hip3"
+        boundingObject USE HIP3_GROUP
+        physics Physics {
+        }
+      }
+    }
+    DEF HIP2 Hinge2Joint {
+      jointParameters HingeJointParameters {
+        position -1.564925413257921e-08
+        anchor -0.2 0 0.1
+      }
+      jointParameters2 JointParameters {
+        position 0.27925211249804827
+      }
+      device [
+        PositionSensor {
+          name "hip2x_pos"
+        }
+        RotationalMotor {
+          name "hip2x"
+          maxTorque 100
+        }
+      ]
+      device2 [
+        PositionSensor {
+          name "hip2z_pos"
+        }
+        RotationalMotor {
+          name "hip2z"
+          maxTorque 100
+        }
+      ]
+      endPoint Solid {
+        translation -0.20032906748008414 8.341726955099526e-05 0.1000178965796282
+        rotation -0.00012971950717031698 -0.00021766306440167512 0.9999999678978193 0.802851370194626
+        children [
+          DEF KNEE2 HingeJoint {
+            jointParameters HingeJointParameters {
+              position -0.628319850485231
+              axis 0 0 1
+              anchor 0 -0.15 0
+            }
+            device [
+              PositionSensor {
+                name "knee2_pos"
+              }
+              RotationalMotor {
+                name "knee2"
+                maxTorque 100
+              }
+            ]
+            endPoint Solid {
+              translation 2.6186975520151786e-05 -0.14997064484596795 9.103236578433795e-07
+              rotation -7.12849414116889e-08 3.65763237367895e-08 -0.9999999999999968 1.9373266947692032
+              children [
+                Transform {
+                  translation 0.0900002 0.1 -0.01
+                  rotation 0 0 1 3.14159
+                  scale 0.003 0.003 0.003
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 1 0.7 0.1
+                        metalness 0
+                      }
+                      geometry Mesh {
+                        url [
+                          "../../../../ImageToStl.com_Forearm/Forearm.obj"
+                        ]
+                      }
+                    }
+                  ]
+                }
+                DEF KNEE2_GROUP Group {
+                  children [
+                    DEF FOOT Pose {
+                      translation 0 -0.15 0
+                      rotation -1 0 0 9.632679519287614e-05
+                      children [
+                        Shape {
+                          appearance PBRAppearance {
+                            baseColor 0.180392 0.203922 0.211765
+                            transparency 1
+                            roughness 0.5
+                            metalness 0
+                          }
+                          geometry Cylinder {
+                            height 0.05
+                            radius 0.03
+                          }
+                        }
+                      ]
+                    }
+                    DEF SPRING Pose {
+                      translation 0 -0.075 0
+                      rotation -1 0 0 1.5707963267948966
+                      children [
+                        Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0.8 0
+                            transparency 1
+                            roughness 0.5
+                          }
+                          geometry Cylinder {
+                            height 0.15
+                            radius 0.015
+                          }
+                        }
+                      ]
+                    }
+                    DEF KNEE Pose {
+                      rotation -1 0 0 9.632679519287614e-05
+                      children [
+                        Shape {
+                          appearance PBRAppearance {
+                            baseColor 0.8 0 0
+                            transparency 1
+                            roughness 1
+                          }
+                          geometry Cylinder {
+                            height 0.03
+                            radius 0.03
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+              boundingObject USE KNEE2_GROUP
+              physics Physics {
+              }
+            }
+          }
+          DEF HIP2_GROUP Group {
+            children [
+              DEF FEMUR_TRANS Pose {
+                translation 0 -0.075 0
+                rotation -1 0 0 1.5707963267948966
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 0 0.8 0
+                      transparency 1
+                      roughness 0.5
+                    }
+                    geometry Cylinder {
+                      height 0.15
+                      radius 0.015
+                    }
+                  }
+                ]
+              }
+              DEF HIP2_TRANS Pose {
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 0.8 0 0
+                      transparency 1
+                      roughness 0.5
+                    }
+                    geometry Sphere {
+                      radius 0.03
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+          Transform {
+            translation 0.213183 -0.0017638 -0.01
+            rotation 0 0 1 1.5708
+            scale 0.003 0.003 0.003
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0.7 0.1
+                  metalness 0
+                }
+                geometry Mesh {
+                  url [
+                    "../../../../ImageToStl.com_Forearm/Thigh.obj"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+        name "hip2"
+        boundingObject USE HIP2_GROUP
+        physics Physics {
+        }
+      }
+    }
+    DEF HIP1 Hinge2Joint {
+      jointParameters HingeJointParameters {
+        position -1.5890246240510004e-08
+        anchor 0.2 0 -0.1
+      }
+      jointParameters2 JointParameters {
+        position -0.2792524738766417
+      }
+      device [
+        PositionSensor {
+          name "hip1x_pos"
+        }
+        RotationalMotor {
+          name "hip1x"
+          maxTorque 100
+        }
+      ]
+      device2 [
+        PositionSensor {
+          name "hip1z_pos"
+        }
+        RotationalMotor {
+          name "hip1z"
+          maxTorque 100
+        }
+      ]
+      endPoint Solid {
+        translation 0.2000714475210708 9.170542721446367e-05 -0.1000468075829316
+        rotation -0.0001523724213896662 0.00021096250225271018 -0.9999999661387333 1.0646508654427929
+        children [
+          Transform {
+            translation 0.21 -0.14 0.00999927
+            rotation 0.7071072811865696 -0.7071062811861719 -3.3905013482585576e-09 3.14159
+            scale 0.003 0.003 0.003
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0.7 0.1
+                  metalness 0
+                }
+                geometry Mesh {
+                  url [
+                    "../../../../ImageToStl.com_Forearm/Thigh.obj"
+                  ]
+                }
+              }
+            ]
+          }
+          DEF KNEE1 HingeJoint {
+            jointParameters HingeJointParameters {
+              position 0.6283197657744843
+              axis 0 0 1
+              anchor 0 -0.15 0
+            }
+            device [
+              PositionSensor {
+                name "knee1_pos"
+              }
+              RotationalMotor {
+                name "knee1"
+                maxTorque 100
+              }
+            ]
+            endPoint Solid {
+              translation -3.568655771843996e-05 -0.14998094814172688 -5.065692955386057e-08
+              rotation -5.102460062201754e-09 2.560080030751371e-09 0.9999999999999999 2.1991221759305315
+              children [
+                DEF KNEE1_GROUP Group {
+                  children [
+                    DEF FOOT Pose {
+                      translation 0 -0.15 0
+                      rotation -1 0 0 9.632679519287614e-05
+                      children [
+                        Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0.203922 0.211765
+                            transparency 1
+                            roughness 0.5
+                            metalness 0
+                          }
+                          geometry Cylinder {
+                            height 0.05
+                            radius 0.03
+                          }
+                        }
+                      ]
+                    }
+                    DEF SPRING Pose {
+                      translation 0 -0.075 0
+                      rotation -1 0 0 1.5707963267948966
+                      children [
+                        Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0.8 0
+                            transparency 1
+                            roughness 0.5
+                          }
+                          geometry Cylinder {
+                            height 0.15
+                            radius 0.015
+                          }
+                        }
+                      ]
+                    }
+                    DEF KNEE Pose {
+                      rotation -1 0 0 9.632679519287614e-05
+                      children [
+                        Shape {
+                          appearance PBRAppearance {
+                            baseColor 0.8 0 0
+                            transparency 1
+                            roughness 1
+                          }
+                          geometry Cylinder {
+                            height 0.03
+                            radius 0.03
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+                Transform {
+                  translation -0.0942635 0.100207 0.01
+                  rotation -1 1.32679e-06 4.7949e-09 3.14159
+                  scale 0.003 0.003 0.003
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 1 0.7 0.1
+                        metalness 0
+                      }
+                      geometry Mesh {
+                        url [
+                          "../../../../ImageToStl.com_Forearm/Forearm.obj"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+              boundingObject USE KNEE1_GROUP
+              physics Physics {
+              }
+            }
+          }
+          DEF HIP1_GROUP Group {
+            children [
+              DEF FEMUR_TRANS Pose {
+                translation 0 -0.075 0
+                rotation -1 0 0 1.5707963267948966
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 0 0.8 0
+                      transparency 1
+                      roughness 0.5
+                    }
+                    geometry Cylinder {
+                      height 0.15
+                      radius 0.015
+                    }
+                  }
+                ]
+              }
+              DEF HIP1_TRANS Pose {
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 0.8 0 0
+                      transparency 1
+                      roughness 0.5
+                    }
+                    geometry Sphere {
+                      radius 0.03
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+        name "hip1"
+        boundingObject USE HIP1_GROUP
+        physics Physics {
+        }
+      }
+    }
+    DEF HIP0 Hinge2Joint {
+      jointParameters HingeJointParameters {
+        position -1.6655303903387108e-08
+        anchor 0.2 0 0.1
+      }
+      jointParameters2 JointParameters {
+        position -0.27925250219713965
+      }
+      device [
+        PositionSensor {
+          name "hip0x_pos"
+        }
+        RotationalMotor {
+          name "hip0x"
+          maxTorque 100
+        }
+      ]
+      device2 [
+        PositionSensor {
+          name "hip0z_pos"
+        }
+        RotationalMotor {
+          name "hip0z"
+          maxTorque 100
+        }
+      ]
+      endPoint Solid {
+        translation 0.1958012503218039 0.008947287773184407 0.10012670440720584
+        rotation -1.6342109891739756e-06 2.319474227913797e-06 -0.9999999999959749 1.064653352525841
+        children [
+          DEF KNEE0 HingeJoint {
+            jointParameters HingeJointParameters {
+              position 0.628318958660693
+              axis 0 0 1
+              anchor 0 -0.15 0
+            }
+            device [
+              PositionSensor {
+                name "knee0_pos"
+              }
+              RotationalMotor {
+                name "knee0"
+                maxTorque 100
+              }
+            ]
+            endPoint Solid {
+              translation 0.00994819893657443 -0.14897779594597366 9.541890338110597e-06
+              rotation -2.892809668465258e-05 -3.986758469378117e-05 0.9999999987868705 2.19911176479844
+              children [
+                Transform {
+                  translation -0.087803 0.096094 0.01
+                  rotation -1 6.12303e-17 4.7949e-09 3.14159
+                  scale 0.003 0.003 0.003
+                  children [
+                    Shape {
+                      appearance PBRAppearance {
+                        baseColor 1 0.7 0.1
+                        metalness 0
+                      }
+                      geometry Mesh {
+                        url [
+                          "../../../../ImageToStl.com_Forearm/Forearm.obj"
+                        ]
+                      }
+                    }
+                  ]
+                }
+                DEF KNEE0_GROUP Group {
+                  children [
+                    DEF KNEE Pose {
+                      rotation -1 0 0 9.632679519287614e-05
+                      children [
+                        DEF KNEE_SHAPE Shape {
+                          appearance PBRAppearance {
+                            baseColor 0.8 0 0
+                            transparency 1
+                            roughness 0.5
+                          }
+                          geometry Cylinder {
+                            height 0.03
+                            radius 0.03
+                          }
+                        }
+                      ]
+                    }
+                    DEF FOOT0 Pose {
+                      translation 0 -0.15 0
+                      rotation -1 0 0 9.632679519287614e-05
+                      children [
+                        Shape {
+                          appearance PBRAppearance {
+                            baseColor 0.180392 0.203922 0.211765
+                            transparency 1
+                            roughness 0.5
+                            metalness 0.5
+                          }
+                          geometry Cylinder {
+                            height 0.05
+                            radius 0.03
+                          }
+                        }
+                      ]
+                    }
+                    DEF SPRING Pose {
+                      translation 0 -0.075 0
+                      rotation -1 0 0 1.5707963267948966
+                      children [
+                        Shape {
+                          appearance PBRAppearance {
+                            baseColor 0 0.8 0
+                            transparency 1
+                            roughness 0.5
+                          }
+                          geometry Cylinder {
+                            height 0.15
+                            radius 0.015
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+              boundingObject USE KNEE0_GROUP
+              physics Physics {
+              }
+            }
+          }
+          DEF HIP0_GROUP Group {
+            children [
+              DEF FEMUR_TRANS Pose {
+                translation 0 -0.075 0
+                rotation -1 0 0 1.5707963267948966
+                children [
+                  Shape {
+                    appearance DEF LEG_APPEARANCE PBRAppearance {
+                      baseColor 0 0.8 0
+                      transparency 1
+                      roughness 0.5
+                    }
+                    geometry Cylinder {
+                      height 0.15
+                      radius 0.015
+                    }
+                  }
+                ]
+              }
+              DEF HIP_TRANS Pose {
+                children [
+                  DEF HIP_SHAPE Shape {
+                    appearance DEF JOINT_APPEARANCE PBRAppearance {
+                      baseColor 0.8 0 0
+                      transparency 1
+                      roughness 0.5
+                    }
+                    geometry Sphere {
+                      radius 0.03
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+          Transform {
+            translation 0.212165 -0.00952764 -0.01
+            rotation 0 0 1 1.5708
+            scale 0.003 0.003 0.003
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0.7 0.1
+                  metalness 0
+                }
+                geometry Mesh {
+                  url [
+                    "../../../../ImageToStl.com_Forearm/Thigh.obj"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+        name "hip0"
+        boundingObject USE HIP0_GROUP
+        physics Physics {
+          centerOfMass [
+            0 0 0
+          ]
+        }
+      }
+    }
+    DEF BODY_SHAPE Shape {
+      appearance DEF BODY_APPEARANCE PBRAppearance {
+        baseColor 0.756863 0.490196 0.0666667
+        transparency 1
+        roughness 0.5
+        metalness 0.1
+      }
+      geometry Box {
+        size 0.4 0.05 0.2
+      }
+    }
+    Transform {
+      translation -3.52079e-14 1.87156e-08 -1.88123e-08
+      rotation -3.3905013482585576e-09 0.7071062811861719 0.7071072811865696 3.14159
+      scale 0.0037 0.0037 0.0037
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 0.7 0.1
+            metalness 0
+          }
+          geometry Mesh {
+            url [
+              "../../../../Incredible Esboo (1)/tinker.obj"
+            ]
+          }
+        }
+      ]
+    }
+    Transform {
+      rotation -3.3905013482585576e-09 0.7071062811861719 0.7071072811865696 3.14159
+      scale 0.0035 0.003 0.003
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 1 0.6
+            metalness 0
+          }
+          geometry Mesh {
+            url [
+              "../../../../Incredible Esboo/tinker.obj"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+  name "dot_go"
+  contactMaterial "dog"
+  boundingObject USE BODY_SHAPE
+  physics Physics {
+    density 1
+    mass 0.32
+  }
+  controller "quadruped_controller"
+  customData "{\"command\": \"hold\", \"trial\": -1}"
+  linearVelocity 1.2392553468142454e-10 5.272725145147893e-10 -1.437615216437237e-08
+  angularVelocity -5.5022889993005666e-08 -4.012295577819122e-10 -4.869525940067241e-10
+}
+Robot {
+  translation 0 0 1.07
+  children [
+    Emitter {
+      channel 1
+    }
+    Receiver {
+      channel 2
+    }
+    Shape {
+      appearance Appearance {
+      }
+      geometry Sphere {
+        radius 0.1
+      }
+    }
+  ]
+  controller "init_testing"
+  supervisor TRUE
+}
